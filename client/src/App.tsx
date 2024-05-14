@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
 import LineChart from "./components/LineChart/LineChart";
 import BarChart from "./components/BarChart/BarChart";
-import { fetchWeatherData } from "./api";
-import { WeatherData } from "./types";
+import { AppState } from "./redux/store";
+import { fetchData } from "./redux/actions";
+import { useSelector, useDispatch } from "react-redux";
 import "./App.css";
 
 const App: React.FC = () => {
-  const [weatherData, setWeatherData] = useState<WeatherData[]>([]);
+  const weatherData = useSelector((state: AppState) => state.weatherData);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const loadWeatherData = async () => {
-      const response = await fetchWeatherData();
-      setWeatherData(response);
+    const loadData = async () => {
+      dispatch(await fetchData());
     };
-    loadWeatherData();
+    loadData();
   }, []);
 
   return (
