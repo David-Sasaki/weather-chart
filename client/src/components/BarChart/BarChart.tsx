@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { type FC, useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
 import { WeatherData } from "../../types";
 
@@ -8,11 +8,7 @@ interface BarChartProps {
   height?: number;
 }
 
-const BarChart: React.FC<BarChartProps> = ({
-  data,
-  width = 800,
-  height = 400,
-}) => {
+const BarChart: FC<BarChartProps> = ({ data, width = 800, height = 400 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const chartInstance = useRef<Chart>();
 

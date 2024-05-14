@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { type FC, useEffect, useRef } from "react";
 import * as d3 from "d3";
 import { WeatherData } from "../../types";
 
@@ -9,7 +9,7 @@ interface LineChartProps {
   margin?: { top: number; right: number; bottom: number; left: number };
 }
 
-const LineChart: React.FC<LineChartProps> = ({
+const LineChart: FC<LineChartProps> = ({
   data,
   width = 800,
   height = 400,
