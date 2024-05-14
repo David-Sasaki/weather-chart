@@ -18,13 +18,13 @@ const LineChart: FC<LineChartProps> = ({
   const svgRef = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
-    if (!svgRef.current) return;
+    if (!svgRef.current || data.length === 0) return;
 
     const svg = d3.select(svgRef.current);
 
     const xScale = d3
       .scaleLinear()
-      .domain([0, data.length - 1])
+      .domain([1, 24]) // Adjusted domain to show numbers from 1 to 24
       .range([margin.left, width - margin.right]);
 
     const yScale = d3
@@ -32,7 +32,8 @@ const LineChart: FC<LineChartProps> = ({
       .domain([0, 100]) // Assuming humidity range is 0-100%
       .range([height - margin.bottom, margin.top]);
 
-    const xAxis = d3.axisBottom(xScale);
+    const xAxis = d3.axisBottom(xScale).ticks(24); // Specify 24 ticks for the x-axis
+
     const yAxis = d3.axisLeft(yScale);
 
     svg
@@ -47,12 +48,12 @@ const LineChart: FC<LineChartProps> = ({
 
     const lineGenerator = d3
       .line<WeatherData>()
-      .x((d, i) => xScale(i))
+      .x((d, i) => xScale(i + 1)) // Adjusted to start from 1
       .y((d) => yScale(d.temperature)); // Temperature line
 
     const humidityLineGenerator = d3
       .line<WeatherData>()
-      .x((d, i) => xScale(i))
+      .x((d, i) => xScale(i + 1)) // Adjusted to start from 1
       .y((d) => yScale(d.humidity)); // Humidity line
 
     svg

@@ -23,7 +23,7 @@ const BarChart: FC<BarChartProps> = ({ data, width = 800, height = 400 }) => {
       chartInstance.current.destroy();
     }
 
-    const labels = data.map((_, index) => `Day ${index + 1}`);
+    const labels = data.map((_, index) => `Hour ${index + 1}`);
     const temperatures = data.map((item) => item.temperature);
     const humidities = data.map((item) => item.humidity);
 
