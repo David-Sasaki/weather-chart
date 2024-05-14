@@ -1,14 +1,15 @@
 import { type FC, useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
-import { WeatherData } from "../../types";
+import { AppState } from "../../redux/store";
+import { useSelector } from "react-redux";
 
 interface BarChartProps {
-  data: WeatherData[];
   width?: number;
   height?: number;
 }
 
-const BarChart: FC<BarChartProps> = ({ data, width = 800, height = 400 }) => {
+const BarChart: FC<BarChartProps> = ({ width = 800, height = 400 }) => {
+  const data = useSelector((state: AppState) => state.weatherData);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const chartInstance = useRef<Chart>();
 

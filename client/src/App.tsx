@@ -1,13 +1,11 @@
-import { type FC, useEffect, useState } from "react";
+import { type FC, useEffect } from "react";
 import LineChart from "./components/LineChart/LineChart";
 import BarChart from "./components/BarChart/BarChart";
-import { AppState } from "./redux/store";
 import { fetchData } from "./redux/actions";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import "./App.css";
 
 const App: FC = () => {
-  const weatherData = useSelector((state: AppState) => state.weatherData);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -20,10 +18,10 @@ const App: FC = () => {
   return (
     <div className="app-container">
       <div className="left-box">
-        <LineChart data={weatherData} />
+        <LineChart />
       </div>
       <div className="right-box">
-        <BarChart data={weatherData} />
+        <BarChart />
       </div>
     </div>
   );

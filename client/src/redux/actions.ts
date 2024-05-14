@@ -1,7 +1,6 @@
 import axios from "axios";
 import { WeatherData } from "../types";
-
-export const FETCH_DATA = 'FETCH_DATA';
+import { FETCH_DATA } from "./store.consts";
 
 const fetchWeatherData = async () => {
     const response = await axios.get(process.env.REACT_APP_WEATHER_URL || "");

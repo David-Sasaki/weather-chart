@@ -1,4 +1,4 @@
-import { FETCH_DATA } from './actions';
+import { FETCH_DATA } from "./store.consts";
 import { WeatherData } from "../types";
 
 interface WeatherState {

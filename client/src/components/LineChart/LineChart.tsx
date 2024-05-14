@@ -1,20 +1,21 @@
 import { type FC, useEffect, useRef } from "react";
 import * as d3 from "d3";
 import { WeatherData } from "../../types";
+import { AppState } from "../../redux/store";
+import { useSelector } from "react-redux";
 
 interface LineChartProps {
-  data: WeatherData[];
   width?: number;
   height?: number;
   margin?: { top: number; right: number; bottom: number; left: number };
 }
 
 const LineChart: FC<LineChartProps> = ({
-  data,
   width = 800,
   height = 400,
   margin = { top: 20, right: 30, bottom: 30, left: 40 },
 }) => {
+  const data = useSelector((state: AppState) => state.weatherData);
   const svgRef = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
